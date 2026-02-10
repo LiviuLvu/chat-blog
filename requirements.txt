@@ -1,0 +1,3 @@
+langchain-community # Community-maintained integrations and loaders for LangChain
+unstructured        # Library for extracting and cleaning text from many document formats
+markdown            # Markdown text splitters

@@ -2,16 +2,10 @@
 title: "Building My Own Firewall Router with OPNsense: A Journey in Home Network Security"
 date: "2025-01-23"
 summary: "Some practical benefits running OPNsense on your home network. It vastly improves safety for anyone at home using the internet."
-# description: ""
 tags: ["Opnsense", "Home Network", "Router", "Firewall"]
 author: "Liviu Iancu"
 weight: 1
 series: ["Network"]
-# categories: [""]
-# aliases: [""]
-# cover:
-#   image: images/img.png
-#   caption: "Description [text](https://link.somewhere/)"
 ---
 
 Never imagined I would be writing about this. I built my own firewall / router using a small form factor PC with OPNsense open source firewall router. The previous "normal" router is now only used as wireless access to OPNsense.

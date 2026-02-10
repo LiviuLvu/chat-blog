@@ -2,16 +2,10 @@
 title: "Trying out the Ergo blockchain environment"
 date: "2022-05-08"
 summary: "Started with this page https://docs.ergoplatform.com/node/install/ to install a ergo node but it quickly turned into 2 days of searching for alternatives and tutorials."
-# description: ""
 tags: ["Ergo", "Blockchain", "Learning", "Starting Ergo Node", "Ubuntu"]
 author: "Liviu Iancu"
 weight: 5
 series: ["Programming"]
-# categories: [""]
-# aliases: [""]
-# cover:
-#   image: images/img.png
-#   caption: "Description [text](https://link.somewhere/)"
 ---
 Starting a local node without any java experience
 

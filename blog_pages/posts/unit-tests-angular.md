@@ -2,16 +2,10 @@
 title: "Unit tests examples in Angular with Jasmine"
 date: "2019-12-05"
 summary: "For you if the importance of unit testing is unquestionable and you are looking for unit testing references with examples of code."
-# description: ""
 tags: ["JavaScript", "Unit Testing", "Jasmine", "Angular", "Stackblitz"]
 author: "Liviu Iancu"
 weight: 5
 series: ["Programming"]
-# categories: [""]
-# aliases: [""]
-# cover:
-#   image: images/img.png
-#   caption: "Description [text](https://link.somewhere/)"
 ---
 This article is dedicated to the misfits, the outliers, the… just kidding. It is for you if the importance of unit testing is unquestionable and you are looking for unit testing references with examples of code.
 

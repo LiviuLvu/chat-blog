@@ -2,16 +2,10 @@
 title: "Push notifications from sensors using python automation"
 date: "2026-01-10"
 summary: "Practical, fun way to use Python to solve problems in home automation."
-# description: ""
 tags: ["zigbee2mqtt", "mqtt", "python", "Push notification", "Proxmox", "LXC containers"]
 author: "Liviu Iancu"
 weight: 2
 series: ["Programming"]
-# categories: [""]
-# aliases: [""]
-# cover:
-#   image: images/img.png
-#   caption: "Description [text](https://link.somewhere/)"
 ---
   
 **About this project**  

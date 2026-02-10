@@ -3,16 +3,10 @@ title: "Learning blockchain programming"
 date: "2022-03-03"
 summary: "In the last couple of months I became curious about what makes a crypto currency work, and why I see more and more news about the technology behind it, promoting it as the future solution to so many problems.
 How does blockchain work?"
-# description: ""
 tags: ["Blockchain", "Truffle", "Learning"]
 author: "Liviu Iancu"
 weight: 5
 series: ["Programming"]
-# categories: [""]
-# aliases: [""]
-# cover:
-#   image: images/img.png
-#   caption: "Description [text](https://link.somewhere/)"
 ---
 In the last couple of months I became curious about what makes a crypto currency work, and why I see more and more news about the technology behind it, promoting it as the future solution to so many problems.
 How does blockchain work?

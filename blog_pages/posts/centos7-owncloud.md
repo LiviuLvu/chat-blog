@@ -2,16 +2,10 @@
 title: "Setting up a home CentOS 7 server with OwnCloud"
 date: "2018-07-15"
 summary: "Lessons from High Performance Browser Networking from Ilya Grigorik. Fantastic resource, great help to understand how networks work."
-# description: ""
 tags: ["Linux", "Centos7", "Home Server", "Owncloud", "Networks"]
 author: "Liviu Iancu"
 weight: 2
 series: ["Network"]
-# categories: [""]
-# aliases: [""]
-# cover:
-#   image: images/img.png
-#   caption: "Description [text](https://link.somewhere/)"
 ---
 A few weeks ago I got myself a little desktop that can serve as a home server… some 16Gb DDRam3, 2 SSD 60Gb each, 2 Tb HDD + 1Tb HDD… hmm, lots of serving possibilities :)
 

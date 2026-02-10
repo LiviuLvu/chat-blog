@@ -2,16 +2,10 @@
 title: "💻 Convex Hosting on a Home Lab with Docker and Orbstack"
 date: "2025-11-20"
 summary: "Self-hosting modern application backends is often a puzzle of configuration, especially when working with newer architectures and tools. Convex, with its focus on full-stack development, offers a self-hosted option that's perfect for a **home lab** environment."
-# description: ""
 tags: ["Home lab", "networking", "Convex DB", "Orbstack"]
 author: "Liviu Iancu"
 weight: 1
 series: ["Devops"]
-# categories: [""]
-# aliases: [""]
-# cover:
-#   image: images/img.png
-#   caption: "Description [text](https://link.somewhere/)"
 ---
 Self-hosting modern application backends is often a puzzle of configuration, especially when working with newer architectures and tools. Convex, with its focus on full-stack development, offers a self-hosted option that's perfect for my **home lab** environment.
 

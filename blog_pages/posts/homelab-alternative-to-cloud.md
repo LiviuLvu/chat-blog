@@ -2,16 +2,10 @@
 title: "Home lab vs Cloud provider: My quest for affordable, practical DevOps Kubernetes experience"
 date: "2025-03-26"
 summary: "Reasons why I stopped using Azure and decided to use my home lab to build a portfolio and gain practical knowledge."
-# description: ""
 tags: ["kubernetes", "azure", "mac mini", "cloud costs", "home lab", "virtual machine", "devops"]
 author: "Liviu Iancu"
 weight: 1
 series: ["Devops"]
-# categories: [""]
-# aliases: [""]
-# cover:
-#   image: images/img.png
-#   caption: "Description [text](https://link.somewhere/)"
 ---
 
 ### Reasons why I stopped using Azure and decided to use my home lab to build a portfolio and gain practical knowledge.

@@ -2,16 +2,10 @@
 title: "Automate tasks and share using script files"
 date: "2018-12-30"
 summary: "A bit about using the power of scripts to help my comrades automate repeated tasks and process optimizations."
-# description: ""
 tags: ["Bash", "Scripting", "Sharing", "Node", "Automate"]
 author: "Liviu Iancu"
 weight: 5
 series: ["Automation"]
-# categories: [""]
-# aliases: [""]
-# cover:
-#   image: images/img.png
-#   caption: "Description [text](https://link.somewhere/)"
 ---
 In this article I write a bit about using the power of scripts to help my comrades automate repeated tasks and process optimizations.
 

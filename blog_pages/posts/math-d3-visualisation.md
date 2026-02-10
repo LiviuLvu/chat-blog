@@ -2,16 +2,10 @@
 title: "Mathematical Pattern Visualization with D3"
 date: "2018-03-30"
 summary: "Visualising patterns using the D3 library."
-# description: ""
 tags: ["JavaScript", "Pattern Generator", "Visualization"]
 author: "Liviu Iancu"
 weight: 2
 series: ["Programming"]
-# categories: [""]
-# aliases: [""]
-# cover:
-#   image: images/img.png
-#   caption: "Description [text](https://link.somewhere/)"
 ---
 There is this book I have on my desk called “Brainmatics Logic Puzzles” from Ivan Moscovich. A few days ago I opened it on the page about Kaprekar’s Digitadition pattern. That looked very interesting and made a few lines in Illustrator to see the pattern.  
 After drawing a few lines I decided to generate the pattern as large as possible and see what happens with large numbers.

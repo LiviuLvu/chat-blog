@@ -2,16 +2,10 @@
 title: "Comparing four ai generators generating a voting app"
 date: "2025-10-11"
 summary: "Using the same prompt on four ai app generators to see how they compare. Main goal is to generate a voting web app"
-# description: ""
 tags: ["ai", "prompting", "automation"]
 author: "Liviu Iancu"
 weight: 1
 series: ["Automation"]
-# categories: [""]
-# aliases: [""]
-# cover:
-#   image: images/img.png
-#   caption: "Description [text](https://link.somewhere/)"
 ---
 Using the same prompt on four ai app generators to see how they compare. Main goal is to generate a voting web app.
 

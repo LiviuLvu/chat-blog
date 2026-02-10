@@ -2,16 +2,10 @@
 title: "Git pull-request from command line"
 date: "2018-05-19"
 summary: "A more direct pr request init from terminal"
-# description: ""
 tags: ["Git", "Terminal", "Version Control"]
 author: "Liviu Iancu"
 weight: 5
 series: ["Programming"]
-# categories: [""]
-# aliases: [""]
-# cover:
-#   image: images/img.png
-#   caption: "Description [text](https://link.somewhere/)"
 ---
 One of the projects I was working on has the default pull-request option set to master.
 For whatever reason I kept forgetting to set this to develop branch. It just felt like it would stay set to develop once i created a PR with that setting…silly me.

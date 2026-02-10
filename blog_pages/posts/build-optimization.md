@@ -2,16 +2,10 @@
 title: "Failing to sell a build optimization idea and not giving up"
 date: "2018-11-25"
 summary: "Have you ever tried to explain something that could be very helpful but seems too complicated to others because you did not properly present your idea?"
-# description: ""
 tags: ["Git", "Bash", "Teamwork", "Process Optimization", "Scripting"]
 author: "Liviu Iancu"
 weight: 3
 series: ["Automation"]
-# categories: [""]
-# aliases: [""]
-# cover:
-#   image: images/img.png
-#   caption: "Description [text](https://link.somewhere/)"
 ---
 Have you ever tried to explain something that could be very helpful but seems too complicated to others because you did not properly present your idea?
 

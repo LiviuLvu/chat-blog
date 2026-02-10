@@ -2,16 +2,10 @@
 title: "Running Proxmox and Dokploy for my home lab"
 date: "2026-01-01"
 summary: "Proxmox is my new virtualization platform of choice for running containerized workloads at home. After several detours through configuration rabbit holes, here's what I learned setting up LXC containers for Dokploy and other services."
-# description: ""
 tags: ["Home lab", "Proxmox", "Dokploy"]
 author: "Liviu Iancu"
 weight: 1
 series: ["Devops"]
-# categories: [""]
-# aliases: [""]
-# cover:
-#   image: images/img.png
-#   caption: "Description [text](https://link.somewhere/)"
 ---
 
 Proxmox is my new virtualization platform of choice for running containerized workloads at home. After several detours through configuration rabbit holes, here's what I learned setting up LXC containers for Dokploy and other services.

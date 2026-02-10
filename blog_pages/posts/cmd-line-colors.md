@@ -2,16 +2,10 @@
 title: "Painting the command line: Coloring the terminal output to make more sense of data"
 date: "2024-08-25"
 summary: "Coloring the output of a command"
-# description: ""
 tags: ["cmd", "terminal"]
 author: "Liviu Iancu"
 weight: 1
 series: ["Programming"]
-# categories: [""]
-# aliases: [""]
-# cover:
-#   image: images/img.png
-#   caption: "Description [text](https://link.somewhere/)"
 ---
 
 This article is the result of a random conversation, stirring my curiosity about how to colorize the Linux command line output. Yes I'm a geek. 

@@ -2,16 +2,10 @@
 title: "Notes on the book High Performance Browser Networking"
 date: "2018-03-30"
 summary: ""
-# description: ""
 tags: ["Http2", "Browser Perfomance", "Network Perfomance", "Book Review", "WebRTC"]
 author: "Liviu Iancu"
 weight: 2
 series: ["Programming"]
-# categories: [""]
-# aliases: [""]
-# cover:
-#   image: images/img.png
-#   caption: "Description [text](https://link.somewhere/)"
 ---
 This is a big book on performance for web developers. I am writing this article especially for myself as a reminder of the many things that can be improved in our apps and servers.  
 ![Osi model](../../assets/img/image.png)

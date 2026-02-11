@@ -1,3 +1,6 @@
-langchain-community # Community-maintained integrations and loaders for LangChain
-unstructured        # Library for extracting and cleaning text from many document formats
-markdown            # Markdown text splitters
+langchain-community     # Community-maintained integrations and loaders for LangChain
+unstructured            # Library for extracting and cleaning text from many document formats
+markdown                # Markdown text splitters
+langchain-huggingface   # Hugging Face embeddings for LangChain
+langchain-Chroma        # Chroma vector store for LangChain
+sentence-transformers   # Pre-trained models for generating sentence embeddings

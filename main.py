@@ -29,10 +29,22 @@ def main():
     # RecursiveCharacterTextSplitter handles code better than Markdown splitters
     from langchain_text_splitters import RecursiveCharacterTextSplitter
 
+    markdown_syntax = [
+        "\n#{1,6}",         # Split by new lines followed by a header (H1 through H6)
+        "```\n",            # Code blocks
+        "\n\\*\\*\\*+\n",   # Horizontal Lines
+        "\n---+\n",         # Horizontal Lines
+        "\n___+\n",         # Horizontal Lines
+        "\n\n",             # Double new lines
+        "\n",               # New line
+        " ",                # Spaces
+        "",
+    ]
+
     splitter = RecursiveCharacterTextSplitter(
-        chunk_size=800,
-        chunk_overlap=20,
-        separators=["---", "##", "\n\n", "\n", " ", ""]
+        chunk_size=1000,
+        chunk_overlap=50,
+        separators=markdown_syntax,
     )
     chunks = splitter.split_documents(unstructured_docs)
     
@@ -76,11 +88,11 @@ def main():
     ## Test questions for similarity search
 
     # user_query = "Fish cookin oil, olive oil for cooking."
-    # user_query = "What hardware is used to run your your home lab server"
-    # user_query = "What do you know about scripting and networking?"
-    # user_query = "How to install OPNsense firewall?"
-    user_query = "Using python to automate tasks for diverse task, day to day. What can you recommend?"
-    # user_query = "about computer networks and working in the command line"
+    user_query = "What hardware is used to run your your home lab server"
+    # user_query = "Using python to automate tasks for diverse task, day to day. What can you recommend?"    
+    # user_query = "Tell me about your blog and what topics are covered. What are the most oftem mentioned tags"
+    # user_query = "What is this blog about?"
+    # user_query = "Show me posts about automation and security."
 
     # if similarity >= score_threshold return chunk
     ## --- Comparing alternative search methods 1 ---

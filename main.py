@@ -1,6 +1,8 @@
 from langchain_community.document_loaders import UnstructuredMarkdownLoader, DirectoryLoader
 from langchain_huggingface.embeddings import HuggingFaceEmbeddings
 from langchain_chroma import Chroma
+from langchain_core.prompts import ChatPromptTemplate
+from langchain_ollama import ChatOllama
 
 def main():
     print("🏁 Hello from rag-blog-pages!")
@@ -96,13 +98,13 @@ def main():
 
     # if similarity >= score_threshold return chunk
     ## --- Comparing alternative search methods 1 ---
-    search_results = vector_store.similarity_search_with_relevance_scores(
+    retrieved_chunks = vector_store.similarity_search_with_relevance_scores(
         user_query,
         k=2,
         score_threshold=0.3,
     )
 
-    for result, score in search_results:
+    for result, score in retrieved_chunks:
         print(f"Score: {score}")
         print(f"Metadata: {result.metadata}")
         print(f"Page Content: {result.page_content[:400]}...\n")
@@ -124,6 +126,35 @@ def main():
     #     # print(f"Score: {score}")
     #     print(f"Metadata: {result.metadata}")
     #     print(f"Page Content: {result.page_content[:100]}...\n")
+
+    context = ""
+    for result, score in retrieved_chunks:
+        context += f"\n{result.page_content}\n"
+
+    prompt = ChatPromptTemplate.from_messages([
+        ("system", 
+        "You are a helpful assistant. "
+        "Answer using ONLY the provided context. "
+        "If the answer is not in the context, say 'I don't know'."),
+        ("human", 
+        "Context:\n{context}\n\nQuestion:\n{question}"),
+    ])
+
+    llm = ChatOllama(
+        model = "qwen2.5-coder:7b-instruct",
+        base_url="http://localhost:11434",
+        temperature = 0.2, # 0.8=default. Higher temperature is more creative, lower is more deterministic
+        num_predict = 256, # 256=default. Maximum number of tokens to predict when generating text.
+    )
+
+    chain = prompt | llm
+
+    response = chain.invoke({
+        "context": context,
+        "question": "What is the main theme?"
+    })
+
+    print(f"🤖 Response:\n{response}")
 
 if __name__ == "__main__":
     main()

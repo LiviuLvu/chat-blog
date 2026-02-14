@@ -90,7 +90,7 @@ def main():
     ## Test questions for similarity search
 
     # user_query = "Fish cookin oil, olive oil for cooking."
-    user_query = "What hardware is used to run your your home lab server"
+    user_query = "What hardware is used to run your your home lab server?"
     # user_query = "Using python to automate tasks for diverse task, day to day. What can you recommend?"    
     # user_query = "Tell me about your blog and what topics are covered. What are the most oftem mentioned tags"
     # user_query = "What is this blog about?"
@@ -104,10 +104,16 @@ def main():
         score_threshold=0.3,
     )
 
+    sources = []
+
     for result, score in retrieved_chunks:
+        sources.append(result.metadata["source"])
         print(f"Score: {score}")
-        print(f"Metadata: {result.metadata}")
-        print(f"Page Content: {result.page_content[:400]}...\n")
+        print(f"Page Content: {result.page_content[:200]}...\n")
+    
+    unique_sources = list(set(sources))
+
+    print(f"Metadata: {unique_sources}")
     
     ## --- Search method 2
     # search_results = vector_store.similarity_search_with_score(user_query, k=1)
@@ -129,32 +135,36 @@ def main():
 
     context = ""
     for result, score in retrieved_chunks:
-        context += f"\n{result.page_content}\n"
+        context += f"\n{result.page_content}, source: {result.metadata["source"]}\n"
 
     prompt = ChatPromptTemplate.from_messages([
         ("system", 
         "You are a helpful assistant. "
-        "Answer using ONLY the provided context. "
-        "If the answer is not in the context, say 'I don't know'."),
-        ("human", 
-        "Context:\n{context}\n\nQuestion:\n{question}"),
+        "Answer using the provided context. "
+        "If the answer is not in the context, say 'Could not find content related to your query'."),
+        ("human", "Context:\n{context}\n\nQuestion:\n{question}"),
     ])
 
     llm = ChatOllama(
         model = "qwen2.5-coder:7b-instruct",
         base_url="http://localhost:11434",
-        temperature = 0.2, # 0.8=default. Higher temperature is more creative, lower is more deterministic
-        num_predict = 256, # 256=default. Maximum number of tokens to predict when generating text.
+        temperature = 0.3, # 0.8=default. Higher temperature is more creative, lower is more deterministic
+        num_predict = 500, # 256=default. Maximum number of tokens to predict when generating text.
     )
 
     chain = prompt | llm
 
-    response = chain.invoke({
+    # LLM answer
+    answer = chain.invoke({
         "context": context,
-        "question": "What is the main theme?"
+        "question": user_query,
     })
 
-    print(f"🤖 Response:\n{response}")
+    # Attach source references
+    if(len(retrieved_chunks) > 0):
+        answer = f"{answer}\n\nSources:\n" + "\n".join(f"- {s}" for s in unique_sources)
+
+    print(f"🤖 Response:\n\n{answer}")
 
 if __name__ == "__main__":
     main()

@@ -4,6 +4,7 @@ from blog_rag import BlogRAG
 
 st.set_page_config(page_title="Blog Q&A", layout="wide")
 st.title("Humble blog RAG app powered by Ollama + LangChain")
+st.page_link("https://liviuiancu.com", label="Return to Blog", icon="🏠")
 
 # Singleton instance
 @st.cache_resource

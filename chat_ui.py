@@ -2,8 +2,12 @@
 import streamlit as st
 from blog_rag import BlogRAG
 
-st.set_page_config(page_title="Blog Q&A", layout="wide")
-st.title("Humble blog RAG app powered by Ollama + LangChain")
+st.set_page_config(
+    page_title="Blog Q&A",
+    layout="centered",
+    page_icon="💬",
+)
+st.title("Chat with my blog")
 st.page_link("https://liviuiancu.com", label="Return to Blog", icon="🏠")
 
 # Singleton instance
@@ -17,11 +21,13 @@ rag = get_rag()
 if "messages" not in st.session_state:
     st.session_state.messages = []
 
+# Display chat messages
 for msg in st.session_state.messages:
     with st.chat_message(msg["role"]):
         st.markdown(msg["content"])
 
-if prompt := st.chat_input("Ask about the blog posts…"):
+# Chat input + actions below it
+if prompt := st.chat_input("Try asking: What hardware is used to run your your home lab server?"):
     st.session_state.messages.append({"role": "user", "content": prompt})
     with st.chat_message("user"):
         st.markdown(prompt)

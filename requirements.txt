@@ -5,3 +5,4 @@ langchain-huggingface   # Hugging Face embeddings for LangChain
 langchain-Chroma        # Chroma vector store for LangChain
 sentence-transformers   # Pre-trained models for generating sentence embeddings
 langchain-Ollama        # Ollama integration for LangChain
+streamlit               # building web applications

@@ -12,5 +12,6 @@ dependencies = [
     "markdown>=3.10.2",
     "numba>=0.63.1",
     "sentence-transformers>=5.2.2",
+    "streamlit>=1.54.0",
     "unstructured>=0.18.31",
 ]

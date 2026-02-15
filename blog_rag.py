@@ -45,9 +45,9 @@ class BlogRAG:
         if self._chain is None:
             prompt = ChatPromptTemplate.from_messages([
                 ("system", (
-                    "You are a helpful assistant that answers questions strictly based on the provided blog content.\n"
-                    "If the information is not in the context, reply exactly: "
-                    "'Could not find relevant content related to your query.'"
+                    "You are a helpful assistant. "
+                    "Answer using the provided context. "
+                    "If the answer is not in the context, say 'Could not find content related to your query'."
                 )),
                 ("human", "Context:\n{context}\n\nQuestion: {question}"),
             ])

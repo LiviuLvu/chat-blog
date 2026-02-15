@@ -1,5 +1,5 @@
-# About this Blog 
-Welcome to my blog. This is a technical journal, documenting experiments in software engineering, networking, and self-hosting home lab.
+# About this Blog Summary
+What this blog is about? This is a technical journal, documenting experiments in software engineering, networking, and self-hosting home lab.
 [liviuiancu.com](https://liviuiancu.com)
 
 ## About Liviu Iancu's developer journey
@@ -56,6 +56,6 @@ The blog serves as a journal for my home lab:
 ## Purpose
 This blog documents the learning process and "tinkering" phase of new technologies. It is intended for developers, home lab enthusiasts, and tech explorers looking for practical, hands-on insights into building and securing digital infrastructure.
 
-## TLDR
+## TLDR About
 Web developer, former designer, and a curious geek at heart. On this blog i write about experiments, thoughts and my learning process. Tinkering with scripts, firewalls, home network, web apps, algorithms, design and more.
 Visit [liviuiancu.com](https://liviuiancu.com) to see what I've been up to lately.

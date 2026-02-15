@@ -94,7 +94,8 @@ def main():
     # user_query = "Using python to automate tasks for diverse task, day to day. What can you recommend?"    
     # user_query = "Tell me about this blog and what topics are covered. What are the most oftem mentioned tags"
     # user_query = "What is this blog about?"
-    # user_query = "Show me posts about automation and security."
+    # user_query = "What are some topics covered about automation and security"
+    # user_query = "Tell me about the author Liviu Iancu"
 
     # if similarity >= score_threshold return chunk
     ## --- Comparing alternative search methods 1 ---

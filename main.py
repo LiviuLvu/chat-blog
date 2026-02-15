@@ -92,7 +92,7 @@ def main():
     # user_query = "Fish cookin oil, olive oil for cooking."
     user_query = "What hardware is used to run your your home lab server?"
     # user_query = "Using python to automate tasks for diverse task, day to day. What can you recommend?"    
-    # user_query = "Tell me about your blog and what topics are covered. What are the most oftem mentioned tags"
+    # user_query = "Tell me about this blog and what topics are covered. What are the most oftem mentioned tags"
     # user_query = "What is this blog about?"
     # user_query = "Show me posts about automation and security."
 

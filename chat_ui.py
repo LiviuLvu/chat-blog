@@ -3,7 +3,7 @@ import streamlit as st
 from blog_rag import BlogRAG
 
 st.set_page_config(page_title="Blog Q&A", layout="wide")
-st.title("Blog Q&A  ·  Ollama + Chroma")
+st.title("Humble blog RAG app powered by Ollama + LangChain")
 
 # Singleton instance
 @st.cache_resource

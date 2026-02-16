@@ -13,7 +13,7 @@ class BlogRAG:
         self,
         data_dir: str = "./blog_pages",
         vector_db_dir: str = "./vector_db",
-        embedding_model: str = "sentence-transformers/all-MiniLM-L6-v2",
+        embedding_model: str = "sentence-transformers/all-MiniLM-L12-v2",
         llm_model: str = "qwen2.5-coder:7b-instruct",
         ollama_url: str = "http://localhost:11434",
     ):
@@ -55,7 +55,7 @@ class BlogRAG:
             llm = ChatOllama(
                 model=self.llm_model,
                 base_url=self.ollama_url,
-                temperature=0.3,
+                temperature=0.5,
                 num_predict=500,
             )
 
@@ -71,7 +71,7 @@ class BlogRAG:
         docs = loader.load()
 
         splitter = RecursiveCharacterTextSplitter(
-            chunk_size=1000,
+            chunk_size=500,
             chunk_overlap=50,
             separators=["\n#{1,6}", "\n\\*\\*\\*+", "\n---+", "\n___+", "\n\n", "\n", " ", ""],
         )
@@ -79,7 +79,12 @@ class BlogRAG:
 
         self._vector_store.add_documents(chunks)
 
-    def query(self, question: str, k: int = 3, score_threshold: float = 0.25) -> Tuple[str, List[str]]:
+    def query(
+        self,
+        question: str,
+        k: int = 2,
+        score_threshold: float = 0.25
+    ) -> Tuple[str, List[str]]:
         self._lazy_load()
 
         docs_with_score: List[Tuple[Document, float]] = (
@@ -87,6 +92,14 @@ class BlogRAG:
                 question, k=k, score_threshold=score_threshold
             )
         )
+        # Debug logging
+        print(f"\n=== Query: {question} ===")
+        print(f"Found {len(docs_with_score)} chunks\n")
+        
+        for result, score in docs_with_score:
+            print(f"Score: {score}")
+            print(f"Metadata: {result.metadata}")
+            print(f"Page Content: {result.page_content[:100]}...\n")
 
         if not docs_with_score:
             return "Could not find relevant content related to your query.", []

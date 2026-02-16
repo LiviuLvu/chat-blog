@@ -79,6 +79,14 @@ def main():
     print(f"Split into {len(chunks)} chunks\n")
 
     ## Create embeddings from chunks
+
+    ## Alternatives for semantic search:
+    # # Option 1: Better general purpose (384 dims)
+    # "sentence-transformers/all-mpnet-base-v2"
+    # # Option 2: Optimized for retrieval (768 dims, slower but better)
+    # "BAAI/bge-base-en-v1.5"
+    # # Option 3: Latest/best (1024 dims)
+    # "sentence-transformers/all-MiniLM-L12-v2"
     embedding = HuggingFaceEmbeddings(model_name="sentence-transformers/all-MiniLM-L6-v2")
     vector_store = Chroma(
         collection_name="blog_pages",

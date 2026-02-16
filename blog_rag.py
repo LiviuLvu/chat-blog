@@ -47,7 +47,7 @@ class BlogRAG:
                 ("system", (
                     "You are a helpful assistant. "
                     "Answer using the provided context. "
-                    "If the answer is not in the context, say 'Could not find content related to your query'."
+                    "If the answer is not in the context, say 'Could not find relevant content to match query'."
                 )),
                 ("human", "Context:\n{context}\n\nQuestion: {question}"),
             ])
@@ -78,6 +78,29 @@ class BlogRAG:
         chunks = splitter.split_documents(docs)
 
         self._vector_store.add_documents(chunks)
+
+    # Helper to format source references as markdown links
+    @staticmethod
+    def format_sources(sources: list[str]) -> str:
+        if not sources:
+            return ""
+
+        lines = []
+        base_url = "https://liviuiancu.com/posts/"
+
+        for raw_path in sources:
+            # Example: "blog_pages/posts/comparing-ai-generators.md"
+            # → "comparing-ai-generators.md" → "comparing-ai-generators"
+            filename = raw_path.split("/")[-1]              # last part
+            slug = filename.replace(".md", "")              # remove extension
+            title_slug = slug.replace("-", " ").title()     # optional: nicer display
+
+            full_url = f"{base_url}{slug}/"
+
+            # Markdown link – looks clean in Streamlit
+            lines.append(f"- [{title_slug}]({full_url})")
+
+        return "**References & Context:**\n" + "\n".join(lines)
 
     def query(
         self,

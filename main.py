@@ -90,12 +90,13 @@ def main():
     ## Test questions for similarity search
 
     # user_query = "Fish cookin oil, olive oil for cooking."
-    user_query = "What hardware is used to run your your home lab server?"
+    # user_query = "What hardware is used to run your your home lab server?"
     # user_query = "Using python to automate diverse tasks, day to day. What can you recommend?"    
     # user_query = "Tell me about this blog and what topics are covered?"
     # user_query = "What is this blog about?"
     # user_query = "What are some topics covered about automation and security"
-    # user_query = "Tell me about the author Liviu Iancu"
+    # user_query = "Tell me about Liviu Iancu"
+    user_query = "give me a summary of this blog and about liviu iancu"
 
     # if similarity >= score_threshold return chunk
     ## --- Comparing alternative search methods 1 ---
@@ -113,8 +114,6 @@ def main():
         print(f"Page Content: {result.page_content[:200]}...\n")
     
     unique_sources = list(set(sources))
-
-    print(f"Metadata: {unique_sources}")
     
     ## --- Search method 2
     # search_results = vector_store.similarity_search_with_score(user_query, k=1)
@@ -163,7 +162,7 @@ def main():
 
     # Attach source references
     if(len(retrieved_chunks) > 0):
-        answer = f"{answer}\n\nSources:\n" + "\n".join(f"- {s}" for s in unique_sources)
+        answer = f"{answer}\n\nSources metadata:\n" + "\n".join(f"- {s}" for s in unique_sources)
 
     print(f"🤖 Response:\n\n{answer}")
 

@@ -29,12 +29,12 @@ for msg in st.session_state.messages:
 # Chat input + actions below it
 if prompt := st.chat_input("Try asking: What hardware is used to run your your home lab server?"):
     st.session_state.messages.append({"role": "user", "content": prompt})
-    with st.chat_message("user"):
+    with st.chat_message("user", avatar="👤"):
         st.markdown(prompt)
 
-    with st.chat_message("assistant"):
+    with st.chat_message("assistant", avatar="🌀"):
         with st.spinner("Thinking…"):
-            answer, sources = rag.query(prompt, k=3, score_threshold=0.25)
+            answer, sources = rag.query(prompt, k=5, score_threshold=0.3)
 
             if sources:
                 sources_md = "**Sources:**\n" + "\n".join(f"- {s}" for s in sources)
@@ -46,6 +46,6 @@ if prompt := st.chat_input("Try asking: What hardware is used to run your your h
 
     st.session_state.messages.append({"role": "assistant", "content": full})
 
-if st.button("Clear chat"):
-    st.session_state.messages = []
-    st.rerun()
+# if st.button("Clear chat"):
+#     st.session_state.messages = []
+#     st.rerun()

@@ -100,7 +100,7 @@ def main():
     # Fish cookin oil, olive oil for cooking.
     # Are there any posts about home safety and security?
     # What hardware do you use to run a home lab server?
-    # Using python to automate diverse tasks, day to day. What can you recommend?
+    # How are you using python to automate tasks?
     # Tell me about this blog and what topics are covered?
     # Tell me about Liviu Iancu
     user_query = "give me a summary of this blog and about liviu iancu"

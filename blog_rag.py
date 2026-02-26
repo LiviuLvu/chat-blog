@@ -54,7 +54,7 @@ class BlogRAG:
             llm = ChatOllama(
                 model=self.llm_model,
                 base_url=self.ollama_url,
-                temperature=0.6,
+                temperature=0.5,
                 num_predict=350,
             )
 
@@ -71,7 +71,7 @@ class BlogRAG:
 
         splitter = RecursiveCharacterTextSplitter(
             chunk_size=500,
-            chunk_overlap=30,
+            chunk_overlap=50,
             separators=["\n#{1,6}", "\n\\*\\*\\*+", "\n---+", "\n___+", "\n\n", "\n", " ", ""],
         )
         chunks = splitter.split_documents(docs)
@@ -104,8 +104,8 @@ class BlogRAG:
     def query(
         self,
         question: str,
-        k: int = 4,
-        score_threshold: float = 0.28
+        k: int = 5,
+        score_threshold: float = 0.25
     ) -> Tuple[str, List[str]]:
         self._lazy_load()
 

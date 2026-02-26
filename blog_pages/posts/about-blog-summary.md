@@ -1,7 +1,7 @@
 ---
-title: "About this Blog Summary TLDR and Liviu Iancu. What this blog is about? This is a technical journal, documenting experiments in software engineering, networking, and self-hosting home lab."
+title: "Summary about this blog and the author: Liviu Iancu"
 date: "2026-02-16"
-summary: "A summary about this blog and me, Liviu Iancu the author"
+summary: "About this Blog Summary TLDR and Liviu Iancu. What this blog is about? This is a technical journal, documenting experiments in software engineering, networking, and self-hosting home lab."
 tags: ["summary", "tldr", "about", "blog", "journal"]
 author: "Liviu Iancu"
 weight: 3

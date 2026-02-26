@@ -1,4 +1,3 @@
-# rag.py
 from typing import List, Tuple
 from langchain_community.document_loaders import DirectoryLoader, UnstructuredMarkdownLoader
 from langchain_huggingface import HuggingFaceEmbeddings
@@ -14,8 +13,8 @@ class BlogRAG:
         data_dir: str = "./blog_pages",
         vector_db_dir: str = "./vector_db",
         embedding_model: str = "sentence-transformers/all-MiniLM-L12-v2",
-        llm_model: str = "qwen2.5-coder:7b-instruct",
-        ollama_url: str = "http://localhost:11434",
+        llm_model: str = "llama3-chatqa:8b-v1.5-q5_K_M",
+        ollama_url: str = "http://192.168.2.103:11434",
     ):
         self.data_dir = data_dir
         self.vector_db_dir = vector_db_dir
@@ -45,9 +44,9 @@ class BlogRAG:
         if self._chain is None:
             prompt = ChatPromptTemplate.from_messages([
                 ("system", (
-                    "You are a helpful assistant. "
-                    "Answer using the provided context. "
-                    "If the answer is not in the context, say 'Could not find relevant content to match query'."
+                    "You are a blog assistant. Answer ONLY from the provided context. "
+                    "If the answer is not in the context, respond exactly: "
+                    "'Could not find relevant content to match query.' "
                 )),
                 ("human", "Context:\n{context}\n\nQuestion: {question}"),
             ])
@@ -55,8 +54,8 @@ class BlogRAG:
             llm = ChatOllama(
                 model=self.llm_model,
                 base_url=self.ollama_url,
-                temperature=0.5,
-                num_predict=500,
+                temperature=0.6,
+                num_predict=350,
             )
 
             self._chain = prompt | llm
@@ -72,7 +71,7 @@ class BlogRAG:
 
         splitter = RecursiveCharacterTextSplitter(
             chunk_size=500,
-            chunk_overlap=50,
+            chunk_overlap=30,
             separators=["\n#{1,6}", "\n\\*\\*\\*+", "\n---+", "\n___+", "\n\n", "\n", " ", ""],
         )
         chunks = splitter.split_documents(docs)
@@ -105,8 +104,8 @@ class BlogRAG:
     def query(
         self,
         question: str,
-        k: int = 2,
-        score_threshold: float = 0.25
+        k: int = 4,
+        score_threshold: float = 0.28
     ) -> Tuple[str, List[str]]:
         self._lazy_load()
 
@@ -123,18 +122,18 @@ class BlogRAG:
             print(f"Score: {score}")
             print(f"Metadata: {result.metadata}")
             print(f"Page Content: {result.page_content[:100]}...\n")
-
-        if not docs_with_score:
+     
+        if len(docs_with_score) < 1:
             return "Could not find relevant content related to your query.", []
+        else:
+            context = "\n\n".join(
+                f"{doc.page_content}\nsource: {doc.metadata.get('source', 'unknown')}"
+                for doc, _ in docs_with_score
+            )
 
-        context = "\n\n".join(
-            f"{doc.page_content}\nsource: {doc.metadata.get('source', 'unknown')}"
-            for doc, _ in docs_with_score
-        )
+            response = self._chain.invoke({"context": context, "question": question})
+            answer = response.content.strip()
 
-        response = self._chain.invoke({"context": context, "question": question})
-        answer = response.content.strip()
-
-        sources = sorted({doc.metadata.get("source", "unknown") for doc, _ in docs_with_score})
+            sources = sorted({doc.metadata.get("source", "unknown") for doc, _ in docs_with_score})
 
         return answer, sources

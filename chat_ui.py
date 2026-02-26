@@ -1,4 +1,3 @@
-# app.py
 import streamlit as st
 from blog_rag import BlogRAG
 
@@ -38,7 +37,7 @@ if prompt := st.chat_input("Try asking: What hardware do you use to run a home l
 
     with st.chat_message("assistant", avatar="🌀"):
         with st.spinner("Thinking…"):
-            answer, sources = rag.query(prompt, k=5, score_threshold=0.3)
+            answer, sources = rag.query(prompt)
 
             if sources:
                 sources_md = rag.format_sources(sources)

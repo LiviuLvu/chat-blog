@@ -100,7 +100,6 @@ def main():
     # Fish cookin oil, olive oil for cooking.
     # Are there any posts about home safety and security?
     # What hardware do you use to run a home lab server?
-    # How are you using python to automate tasks?
     # Tell me about this blog and what topics are covered?
     # Tell me about Liviu Iancu
     user_query = "give me a summary of this blog and about liviu iancu"
@@ -153,7 +152,7 @@ def main():
     ])
 
     llm = ChatOllama(
-        model = "qwen2.5-coder:7b-instruct",
+        model = "llama3.2:3b-instruct-q4_K_S",
         base_url="http://localhost:11434",
         temperature = 0.3, # 0.8=default. Higher temperature is more creative, lower is more deterministic
         num_predict = 500, # 256=default. Maximum number of tokens to predict when generating text.

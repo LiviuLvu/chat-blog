@@ -336,10 +336,10 @@ networks:
 ✅ Solution: Switch to a slightly larger model. Eg. from q4 to q5 (llama3-chatqa:8b-v1.5-q4_K_M -> llama3-chatqa:8b-v1.5-q5_K_M).  
   
 ⚠️ No results are returned by very low threshold of 2 for simple questions like: What topics are covered?; Who is the author?  
- - Could be a vector embeddings, semantic search issue related to threshold, because no results are returned even for low score of 1 but related content does exist on the blog.  
+✅ Solution: After changing the embeddings model, the vector store needs to be regenerated
   
-⚠️ Answer is very slow.  
- - Possibly due to local small LLM, or slow hardware. ATM only idea is provide subscription LLM API.  
+⚠️ Answer is very slow only on proxmox x86 machine.
+✅ Solution: It uses CPU only. The attempt to make it use the small GPU on LXC failed. Ideally the llm should have its own dedicated, fast machine.
   
 ⚠️ LLM do not follow instructions well. Does not mention of missing / not found context. (when using qwen2.5-coder:7b-instruct)  
 ✅ Solution:  

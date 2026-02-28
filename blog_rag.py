@@ -17,6 +17,7 @@ class BlogRAG:
         vector_db_dir: str = "./vector_db",
         embedding_model: str = "sentence-transformers/all-MiniLM-L12-v2",
         llm_model: str = "llama3-chatqa:8b-v1.5-q5_K_M",
+        # Check the default Ollama ip and port to match your local setup.
         ollama_url: str = "http://localhost:11434",
     ):
         self.data_dir = data_dir

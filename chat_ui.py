@@ -26,7 +26,7 @@ for msg in st.session_state.messages:
         st.markdown(msg["content"])
 
 # Chat input + actions below it
-if prompt := st.chat_input("Try asking: Tell me about this blog and what topics are covered? Who is the author?"):
+if prompt := st.chat_input("Try asking: What is this blog about? Who is the blog author?"):
     st.session_state.messages.append({
         "role": "user",
         "content": prompt,

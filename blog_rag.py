@@ -6,6 +6,9 @@ from langchain_text_splitters import RecursiveCharacterTextSplitter
 from langchain_core.prompts import ChatPromptTemplate
 from langchain_ollama import ChatOllama
 from langchain_core.documents import Document
+import os
+import shutil
+import chromadb
 
 class BlogRAG:
     def __init__(
@@ -14,7 +17,7 @@ class BlogRAG:
         vector_db_dir: str = "./vector_db",
         embedding_model: str = "sentence-transformers/all-MiniLM-L12-v2",
         llm_model: str = "llama3-chatqa:8b-v1.5-q5_K_M",
-        ollama_url: str = "http://192.168.2.103:11434",
+        ollama_url: str = "http://localhost:11434",
     ):
         self.data_dir = data_dir
         self.vector_db_dir = vector_db_dir
@@ -31,15 +34,56 @@ class BlogRAG:
             self._embeddings = HuggingFaceEmbeddings(model_name=self.embedding_model_name)
 
         if self._vector_store is None:
-            self._vector_store = Chroma(
-                collection_name="blog_pages",
-                embedding_function=self._embeddings,
-                persist_directory=self.vector_db_dir,
-            )
+            # Use a shared direct client to avoid multiple connections and file locks
+            persistent_client = chromadb.PersistentClient(path=self.vector_db_dir)
+            
+            needs_rebuild = False
+            stored_model = None
+            try:
+                # Attempt to get the collection and its metadata
+                collection_metadata = collection.metadata or {}
+                stored_model = collection_metadata.get("embedding_model")
+                stored_space = collection_metadata.get("hnsw:space")
+                
+                if stored_model != self.embedding_model_name:
+                    print(f"Embedding model mismatch: stored='{stored_model}', current='{self.embedding_model_name}'")
+                    needs_rebuild = True
+                elif stored_space != "cosine":
+                    print(f"Distance metric mismatch (or default L2 found): stored='{stored_space}', current='cosine'")
+                    needs_rebuild = True
+                elif collection.count() == 0:
+                    print("Vector store is empty.")
+                    needs_rebuild = True
+            except (ValueError, Exception):
+                # Collection doesn't exist
+                print("Vector store collection 'blog_pages' not found.")
+                needs_rebuild = True
 
-            # Build index if empty
-            if self._vector_store._collection.count() == 0:
+            if needs_rebuild:
+                print("Rebuilding index...")
+                try:
+                    persistent_client.delete_collection("blog_pages")
+                except:
+                    pass
+                
+                # Re-initialize via wrapper using the SAME client
+                self._vector_store = Chroma(
+                    client=persistent_client,
+                    collection_name="blog_pages",
+                    embedding_function=self._embeddings,
+                    collection_metadata={
+                        "embedding_model": self.embedding_model_name,
+                        "hnsw:space": "cosine"
+                    }
+                )
                 self._build_index()
+            else:
+                # No rebuild needed, use the existing collection via the shared client
+                self._vector_store = Chroma(
+                    client=persistent_client,
+                    collection_name="blog_pages",
+                    embedding_function=self._embeddings,
+                )
 
         if self._chain is None:
             prompt = ChatPromptTemplate.from_messages([
@@ -72,7 +116,8 @@ class BlogRAG:
         splitter = RecursiveCharacterTextSplitter(
             chunk_size=500,
             chunk_overlap=50,
-            separators=["\n#{1,6}", "\n\\*\\*\\*+", "\n---+", "\n___+", "\n\n", "\n", " ", ""],
+            separators=["\n#{1,6} ", "\n\\*\\*\\*+", "\n---+", "\n___+", "\n\n", "\n", " ", ""],
+            is_separator_regex=True,
         )
         chunks = splitter.split_documents(docs)
 

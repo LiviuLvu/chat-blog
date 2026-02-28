@@ -1,7 +1,7 @@
 [project]
 name = "rag-blog-pages"
 version = "0.1.0"
-description = "Add your description here"
+description = "Chat RAG app for blog pages"
 readme = "README.md"
 requires-python = ">=3.12"
 dependencies = [
